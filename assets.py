@@ -9,5 +9,5 @@ def load_sprites():
         sprites[file.split(".")[0]] = pygame.image.load(os.path.join(path, file))
 
 
-def get_sprite(name):
+def get_sprites(name):
     return sprites[name]
