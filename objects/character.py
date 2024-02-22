@@ -10,14 +10,24 @@ class Character(pygame.sprite.Sprite):
         self.image = assets.get_sprites("tempCHARACTER")
         self.rect = self.image.get_rect(topleft =(0,0))
         super().__init__(*groups)
+
+        # which image
+        self.switch = 0
+        self.allAges = []
+        for i in range(6):
+            self.allAges.append("characterImage" + str(i))
+
     
 
-    def state(self, *groups):
+    def update(self, *groups):
         # age += 1
         # if self.age == 2:
-        self.image = assets.get_sprites("tempCHARACTER2")
-        self.rect = self.image.get_rect(topleft =(0,0))
-
+        if self.switch < len(self.allAges):
+            self.image = assets.get_sprites(self.allAges[self.switch])
+            self.rect = self.image.get_rect(topleft =(0,0))
+            self.switch += 1
+        
+    
 # class CharacterStats(object):
 #     def __init__(self):
 #         self.age = 0

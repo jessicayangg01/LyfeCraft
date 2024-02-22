@@ -4,6 +4,9 @@ import configs
 from objects.background import Background
 from objects.game_start import Game_Start
 from objects.character import Character
+from characterStats import characterStats
+
+
 # from objects.background import Background
 
 pygame.init()
@@ -20,11 +23,18 @@ sprites = pygame.sprite.LayeredUpdates()
 Game_Start(sprites)
 unclicked = True
 
+# add AGE event every few seconds
+AGEEVENT = pygame.USEREVENT+1
+t1 = 10000
+pygame.time.set_timer(AGEEVENT, t1)
 
 # add event every few seconds
-MOVEEVENT = pygame.USEREVENT+1
-t = 10000
-pygame.time.set_timer(MOVEEVENT, t)
+OPPORTUNITYEVENT = pygame.USEREVENT+1
+t2 = 5000
+pygame.time.set_timer(OPPORTUNITYEVENT, t2)
+
+# create Character
+character = characterStats()
 
 while running:
     for event in pygame.event.get():
@@ -36,10 +46,8 @@ while running:
             if unclicked:
                 unclicked = False
                 Background(sprites)
-
-                # added
                 Character(sprites)
-            
+                            
             pos = pygame.mouse.get_pos()
             # get a list of all sprites that are under the mouse cursor
             clicked_sprites = [s for s in sprites if s.rect.collidepoint(pos)]
@@ -47,15 +55,16 @@ while running:
 
             # maybe have another class for the events
         
-        if event.type == MOVEEVENT:
+        if event.type == AGEEVENT:
             print("AGED")
-            Character.state(sprites)
-            
-    
+            character.ageUp(sprites)
+        
+        if event.type == OPPORTUNITYEVENT:
+            print("NEW EVENT")
+             
     screen.fill("pink")
     sprites.draw(screen)
     pygame.display.flip()
-
     clock.tick(configs.FPS)
 
 pygame.quit()
