@@ -15,5 +15,9 @@ if it still doesnt work
 python3 -m pip uninstall playsound
 python3 -m pip install playsound==1.2.2
 
+
+INSTALL EXCEL
+python3 -m pip install openpyxl
+
 # note for myself
 python3 -m pip install ...

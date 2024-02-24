@@ -1,3 +1,0 @@
-### FINISH
-
-def getEvent(self):
