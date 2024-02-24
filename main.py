@@ -6,18 +6,25 @@ from objects.game_start import Game_Start
 from objects.character import Character
 from characterStats import characterStats
 
+from playsound import playsound
+
+
+# audio
+assets.load_audio()
+playsound(assets.get_audio("backgroundMusic"), False)
+
 
 # from objects.background import Background
-
 pygame.init()
-
 screen = pygame.display.set_mode((configs.SCREEN_WIDTH, configs.SCREEN_HEIGHT))
-
 running = True
 clock = pygame.time.Clock()
 
+
+# import sprites
 assets.load_sprites()
 sprites = pygame.sprite.LayeredUpdates()
+
 
 # Background(sprites)
 Game_Start(sprites)
@@ -43,6 +50,7 @@ while running:
         
         if event.type == pygame.MOUSEBUTTONUP:
             print("CLICKED")
+            playsound(assets.get_audio("goodSound"), False)
             if unclicked:
                 unclicked = False
                 Background(sprites)
