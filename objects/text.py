@@ -1,3 +1,5 @@
+import pygame
+
 class Text(pygame.sprite.Sprite):
     def __init__(self, text, size, color, width, height):
         # Call the parent class (Sprite) constructor  
