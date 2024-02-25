@@ -10,6 +10,9 @@ from characterStats import characterStats
 from objects.yesButton import Yes_Button
 from objects.noButton import No_Button
 
+# import stats bar
+from objects.statBars import StatsBar
+
 from objects.text import Text
 from objects.actionEvent import getEvent
 
@@ -44,7 +47,7 @@ pygame.time.set_timer(AGEEVENT, t1)
 
 # add event every few seconds
 OPPORTUNITYEVENT = pygame.USEREVENT+1
-t2 = 5000
+t2 = 10000
 pygame.time.set_timer(OPPORTUNITYEVENT, t2)
 
 # create Character
@@ -55,6 +58,16 @@ currEvent = None
 currEventYes = None
 currEventNo = None
 currEventBackground = None
+
+
+# stats bars
+# drawing bar
+statsBars = {}
+x = 300
+for i in range(7):
+    statsBars[i] = StatsBar(80, x, 200, 20, 100)
+    x += 30
+drawNow = False
 
 while running:
     for event in pygame.event.get():
@@ -69,6 +82,10 @@ while running:
                 Background(sprites)
                 Character(sprites)
                 gameStart.die()
+                drawNow = True
+                print("DRAWN")
+                
+
                             
             pos = pygame.mouse.get_pos()
             # get a list of all sprites that are under the mouse cursor
@@ -77,14 +94,16 @@ while running:
             # do something with the clicked sprites..
 
             # all the buttons clicked
-            if currEventNo or currEventYes in clicked_sprites:
+            if currEventNo in clicked_sprites or currEventYes in clicked_sprites:
                 if currEventNo in clicked_sprites:
                     print("NOOO")
                 elif currEventYes in clicked_sprites:
+                    character.updateStat(currEvent, statsBars)
                     print("YESSSSS")
                 currEventNo.die()
                 currEventYes.die()
                 currEventBackground.die()
+                
             # maybe have another class for the events
         
         if event.type == AGEEVENT:
@@ -92,8 +111,8 @@ while running:
         
         if event.type == OPPORTUNITYEVENT:
             # EventBox(sprites)
+            playsound(assets.get_audio("eventSound"), False)
             currEvent = getEvent()
-            
             currEventBackground = Text(currEvent["Event"], sprites)
             currEventYes = Yes_Button(sprites)
             currEventNo = No_Button(sprites)
@@ -102,6 +121,11 @@ while running:
              
     screen.fill("pink")
     sprites.draw(screen)
+    
+    if drawNow:
+        for i in statsBars:
+            statsBars[i].draw(screen)
+    
     pygame.display.flip()
     clock.tick(configs.FPS)
 

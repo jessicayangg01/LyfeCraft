@@ -8,5 +8,4 @@ class No_Button(pygame.sprite.Sprite):
         super().__init__(*groups)
 
     def die(self):
-        if self.rect.x < 100:
-            self.kill()
+        self.kill()
