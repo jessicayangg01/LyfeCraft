@@ -11,10 +11,10 @@ class Character(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft =(0,0))
 
         # added
-        self.font = pygame.font.SysFont("Arial", 30)
-        self.blue = (0, 0, 128)
-        self.textSurf = self.font.render("Age: " + str(character.age), True, self.blue)
-        self.image.blit(self.textSurf, [20, 200])
+        # self.font = pygame.font.SysFont("Arial", 30)
+        # self.blue = (0, 0, 128)
+        # self.textSurf = self.font.render("Age: " + str(character.age), True, self.blue)
+        # self.image.blit(self.textSurf, [20, 200])
 
         super().__init__(*groups)
 
@@ -33,13 +33,13 @@ class Character(pygame.sprite.Sprite):
         print(character.age)
         if 3%character.age == 0:
             if self.switch < len(self.allAges):
-                # # self.rect = self.image.get_rect(topleft =(0,0))
+                self.rect = self.image.get_rect(topleft =(0,0))
                 self.switch += 1
         
         
-        self.textSurf = self.font.render("Age: " + str(character.age), True, self.blue)
-        self.image = assets.get_sprites(self.allAges[self.switch])
-        self.image.blit(self.textSurf, [20, 200])
+        # self.textSurf = self.font.render("Age: " + str(character.age), True, self.blue)
+        # self.image = assets.get_sprites(self.allAges[self.switch])
+        # self.image.blit(self.textSurf, [20, 200])
         
     
 # class CharacterStats(object):

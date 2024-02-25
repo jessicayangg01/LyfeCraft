@@ -17,6 +17,7 @@ from objects.statBars import StatsBar
 from objects.text import Text
 from objects.actionEvent import getEvent
 from objects.characterDisplay import CharacterText
+from objects.characterAge import CharacterAge
 
 from playsound import playsound
 
@@ -49,7 +50,7 @@ pygame.time.set_timer(AGEEVENT, t1)
 
 # add event every few seconds
 OPPORTUNITYEVENT = pygame.USEREVENT+1
-t2 = 10000
+t2 = 15000
 pygame.time.set_timer(OPPORTUNITYEVENT, t2)
 
 # create Character
@@ -86,6 +87,7 @@ while running:
                 Background(sprites)
                 Character(character, sprites)
                 CharacterText(0, "Jessica", sprites)
+                CharacterAge(character, sprites)
                 gameStart.die()
                 drawNow = True                
 
