@@ -6,6 +6,9 @@ from objects.game_start import Game_Start
 from objects.character import Character
 from characterStats import characterStats
 
+from objects.text import Text
+from objects.actionEvent import getEvent
+
 from playsound import playsound
 
 
@@ -69,6 +72,12 @@ while running:
         
         if event.type == OPPORTUNITYEVENT:
             print("NEW EVENT")
+            # EventBox(sprites)
+            currEvent = getEvent()
+            
+            Text(currEvent["Event"], sprites)
+
+
              
     screen.fill("pink")
     sprites.draw(screen)
