@@ -7,4 +7,6 @@ class Game_Start(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft =(0,0))
         super().__init__(*groups)
 
-    
+    def die(self):
+        if self.rect.x < 100:
+            self.kill()

@@ -6,6 +6,10 @@ from objects.game_start import Game_Start
 from objects.character import Character
 from characterStats import characterStats
 
+# buttons
+from objects.yesButton import Yes_Button
+from objects.noButton import No_Button
+
 from objects.text import Text
 from objects.actionEvent import getEvent
 
@@ -30,7 +34,7 @@ sprites = pygame.sprite.LayeredUpdates()
 
 
 # Background(sprites)
-Game_Start(sprites)
+gameStart = Game_Start(sprites)
 unclicked = True
 
 # add AGE event every few seconds
@@ -46,6 +50,12 @@ pygame.time.set_timer(OPPORTUNITYEVENT, t2)
 # create Character
 character = characterStats()
 
+# keeps track of events
+currEvent = None
+currEventYes = None
+currEventNo = None
+currEventBackground = None
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -58,24 +68,35 @@ while running:
                 unclicked = False
                 Background(sprites)
                 Character(sprites)
+                gameStart.die()
                             
             pos = pygame.mouse.get_pos()
             # get a list of all sprites that are under the mouse cursor
             clicked_sprites = [s for s in sprites if s.rect.collidepoint(pos)]
+            print(clicked_sprites)
             # do something with the clicked sprites..
 
+            # all the buttons clicked
+            if currEventNo or currEventYes in clicked_sprites:
+                if currEventNo in clicked_sprites:
+                    print("NOOO")
+                elif currEventYes in clicked_sprites:
+                    print("YESSSSS")
+                currEventNo.die()
+                currEventYes.die()
+                currEventBackground.die()
             # maybe have another class for the events
         
         if event.type == AGEEVENT:
-            print("AGED")
             character.ageUp(sprites)
         
         if event.type == OPPORTUNITYEVENT:
-            print("NEW EVENT")
             # EventBox(sprites)
             currEvent = getEvent()
             
-            Text(currEvent["Event"], sprites)
+            currEventBackground = Text(currEvent["Event"], sprites)
+            currEventYes = Yes_Button(sprites)
+            currEventNo = No_Button(sprites)
 
 
              

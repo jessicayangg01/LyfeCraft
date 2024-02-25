@@ -35,11 +35,6 @@ class Text(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft =(50,50))
         super().__init__(*groups)
 
-
-        # add yes and no
-        self.image = assets.get_sprites("yes")
-        self.rect = self.image.get_rect(topleft =(100,0))
-        super().__init__(*groups)
-        self.image = assets.get_sprites("no")
-        self.rect = self.image.get_rect(topleft =(200,0))
-        super().__init__(*groups)
+    def die(self):
+        if self.rect.x < 100:
+            self.kill()
