@@ -9,6 +9,7 @@ from characterStats import characterStats
 # buttons
 from objects.yesButton import Yes_Button
 from objects.noButton import No_Button
+from objects.okButton import Ok_Button
 
 # import stats bar
 from objects.statBars import StatsBar
@@ -58,6 +59,8 @@ currEvent = None
 currEventYes = None
 currEventNo = None
 currEventBackground = None
+aftermath = None
+aftermathOk = None
 
 
 # stats bars
@@ -82,27 +85,32 @@ while running:
                 Background(sprites)
                 Character(sprites)
                 gameStart.die()
-                drawNow = True
-                print("DRAWN")
-                
+                drawNow = True                
 
                             
             pos = pygame.mouse.get_pos()
             # get a list of all sprites that are under the mouse cursor
             clicked_sprites = [s for s in sprites if s.rect.collidepoint(pos)]
-            print(clicked_sprites)
+            # print(clicked_sprites)
             # do something with the clicked sprites..
 
             # all the buttons clicked
             if currEventNo in clicked_sprites or currEventYes in clicked_sprites:
                 if currEventNo in clicked_sprites:
-                    print("NOOO")
+                    print("maybe put something here")
                 elif currEventYes in clicked_sprites:
                     character.updateStat(currEvent, statsBars)
-                    print("YESSSSS")
+                    aftermath = Text(currEvent["Follow-up Event"], "UPDATE", sprites)
+                    aftermathOk = Ok_Button(sprites)
                 currEventNo.die()
                 currEventYes.die()
                 currEventBackground.die()
+            
+            if aftermathOk in clicked_sprites:
+                aftermath.die()
+                aftermathOk.die()
+
+
                 
             # maybe have another class for the events
         
@@ -113,7 +121,7 @@ while running:
             # EventBox(sprites)
             playsound(assets.get_audio("eventSound"), False)
             currEvent = getEvent()
-            currEventBackground = Text(currEvent["Event"], sprites)
+            currEventBackground = Text(currEvent["Event"], "OPPORTUNITY", sprites)
             currEventYes = Yes_Button(sprites)
             currEventNo = No_Button(sprites)
 

@@ -1,34 +1,35 @@
 import pygame
-import assets
 
 class Text(pygame.sprite.Sprite):
-    def __init__(self, text, *groups):        
+    def __init__(self, text, type, *groups):        
 
 
         # Call the parent class (Sprite) constructor  
         pygame.sprite.Sprite.__init__(self)
-    
-        self.font = pygame.font.SysFont("Arial", 12)
-        # self.textSurf = self.font.render(text, 1, color)
-        green = (0, 255, 0)
         blue = (0, 0, 128)
         white = (255, 255, 255)
 
+
+        
         self.image = pygame.Surface((200, 200))
         self.image.fill(white)
 
+        self.font = pygame.font.SysFont("Arial", 30)
+        self.textSurf = self.font.render(type, True, blue, white)
+        self.image.blit(self.textSurf, [0, 2])
+
+        self.font = pygame.font.SysFont("Arial", 12)
+
         # add text
-        print(text)
-        i = 50
-        x = 0
+        i = 48
+        x = 40
         while i < len(text):
             currText = text[:i]
-            self.textSurf = self.font.render(currText, True, green, blue)
+            self.textSurf = self.font.render(currText, True, blue, white)
             self.image.blit(self.textSurf, [0, x])
-            print(currText)
             text = text[i:]
             x += 20
-        self.textSurf = self.font.render(text, True, green, blue)
+        self.textSurf = self.font.render(text, True, blue, white)
         self.image.blit(self.textSurf, [0, x])
             
 
