@@ -16,6 +16,7 @@ from objects.statBars import StatsBar
 
 from objects.text import Text
 from objects.actionEvent import getEvent
+from objects.characterDisplay import CharacterText
 
 from playsound import playsound
 
@@ -79,11 +80,12 @@ while running:
         
         if event.type == pygame.MOUSEBUTTONUP:
             print("CLICKED")
-            playsound(assets.get_audio("goodSound"), False)
+            
             if unclicked:
                 unclicked = False
                 Background(sprites)
-                Character(sprites)
+                Character(character, sprites)
+                CharacterText(0, "Jessica", sprites)
                 gameStart.die()
                 drawNow = True                
 
@@ -97,8 +99,10 @@ while running:
             # all the buttons clicked
             if currEventNo in clicked_sprites or currEventYes in clicked_sprites:
                 if currEventNo in clicked_sprites:
+                    playsound(assets.get_audio("badSound"), False)
                     print("maybe put something here")
                 elif currEventYes in clicked_sprites:
+                    playsound(assets.get_audio("goodSound"), False)
                     character.updateStat(currEvent, statsBars)
                     aftermath = Text(currEvent["Follow-up Event"], "UPDATE", sprites)
                     aftermathOk = Ok_Button(sprites)
@@ -107,6 +111,7 @@ while running:
                 currEventBackground.die()
             
             if aftermathOk in clicked_sprites:
+                playsound(assets.get_audio("goodSound"), False)
                 aftermath.die()
                 aftermathOk.die()
 

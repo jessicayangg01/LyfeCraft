@@ -9,13 +9,11 @@ class characterStats(object):
         self.education = 0
         self.career = 0
         self.adventure = 0
-
-        
+   
     
     def ageUp(self, sprites):
         self.age+=1
-        if 3%self.age == 0:
-            sprites.update()
+        sprites.update(self)
     
     def updateStat(self, stats, statsBars):
         for i in stats:
