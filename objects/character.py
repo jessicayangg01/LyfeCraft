@@ -29,7 +29,8 @@ class Character(pygame.sprite.Sprite):
     def update(self, character, *groups):
         # age += 1
         # if self.age == 2:
-        if 5%(character.age+1) == 0:
+        if (character.age+1)%7 == 0:
+            print("AGED")
             if self.switch < len(self.allAges):
                 self.image = assets.get_sprites(self.allAges[self.switch])
                 self.rect = self.image.get_rect(topleft =(20,70))

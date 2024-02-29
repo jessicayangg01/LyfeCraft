@@ -80,7 +80,6 @@ while running:
             running = False
         
         if event.type == pygame.MOUSEBUTTONUP:
-            print("CLICKED")
             
             if unclicked:
                 unclicked = False

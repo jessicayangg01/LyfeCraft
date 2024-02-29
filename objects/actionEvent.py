@@ -19,7 +19,6 @@ for i in events:
 # returns a random event
 def getEvent():
     randNum = random.randint(0,totalEventsNum-1)
-    print(randNum)
     returnDict = {}
     for i in allEvents:
         returnDict[i] = allEvents[i][randNum]
