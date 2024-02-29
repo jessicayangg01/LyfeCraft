@@ -16,7 +16,7 @@ class CharacterAge(pygame.sprite.Sprite):
         self.font = pygame.font.SysFont("Arial", 30)
         self.blue = (0, 0, 128)
         self.textSurf = self.font.render("Age: " + str(character.age), True, self.blue)
-        self.image.blit(self.textSurf, [130, 150])
+        self.image.blit(self.textSurf, [150, 150])
 
         self.rect = self.image.get_rect(topleft =(0, 0))
 
@@ -30,7 +30,7 @@ class CharacterAge(pygame.sprite.Sprite):
         # if self.age == 2:
         self.image = pygame.Surface([640,640], pygame.SRCALPHA, 32)
         self.textSurf = self.font.render("Age: " + str(character.age), True, self.blue)
-        self.image.blit(self.textSurf, [130, 150])
+        self.image.blit(self.textSurf, [150, 150])
         
     
 # class CharacterStats(object):
