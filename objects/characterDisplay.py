@@ -18,7 +18,7 @@ class CharacterText(pygame.sprite.Sprite):
 
         self.font = pygame.font.SysFont("Arial", 30)
         self.textSurf = self.font.render(self.name, True, blue)
-        self.image.blit(self.textSurf, [120, 60])
+        self.image.blit(self.textSurf, [150, 90])
 
         self.font = pygame.font.SysFont("Arial", 15)
 
@@ -26,7 +26,7 @@ class CharacterText(pygame.sprite.Sprite):
         index = 300
         for i in statsList:
             self.textSurf = self.font.render(i, True, blue)
-            self.image.blit(self.textSurf, [0, index])
+            self.image.blit(self.textSurf, [5, index])
             index += 30
             print(i)
             

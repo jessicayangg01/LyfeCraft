@@ -17,6 +17,7 @@ from objects.statBars import StatsBar
 from objects.text import Text
 from objects.actionEvent import getEvent
 from objects.characterDisplay import CharacterText
+from objects.characterAge import CharacterAge
 
 from playsound import playsound
 
@@ -45,12 +46,12 @@ unclicked = True
 # add AGE event every few seconds
 AGEEVENT = pygame.USEREVENT+1
 t1 = 10000
-pygame.time.set_timer(AGEEVENT, t1)
+# pygame.time.set_timer(AGEEVENT, t1)
 
 # add event every few seconds
 OPPORTUNITYEVENT = pygame.USEREVENT+1
-t2 = 10000
-pygame.time.set_timer(OPPORTUNITYEVENT, t2)
+t2 = 15000
+# pygame.time.set_timer(OPPORTUNITYEVENT, t2)
 
 # create Character
 character = characterStats()
@@ -86,8 +87,11 @@ while running:
                 Background(sprites)
                 Character(character, sprites)
                 CharacterText(0, "Jessica", sprites)
+                CharacterAge(character, sprites)
                 gameStart.die()
-                drawNow = True                
+                drawNow = True
+                pygame.time.set_timer(OPPORTUNITYEVENT, t2) 
+                pygame.time.set_timer(AGEEVENT, t1)               
 
                             
             pos = pygame.mouse.get_pos()
@@ -100,7 +104,9 @@ while running:
             if currEventNo in clicked_sprites or currEventYes in clicked_sprites:
                 if currEventNo in clicked_sprites:
                     playsound(assets.get_audio("badSound"), False)
-                    print("maybe put something here")
+                    # resume timer
+                    pygame.time.set_timer(OPPORTUNITYEVENT, t2) 
+                    pygame.time.set_timer(AGEEVENT, t1)   
                 elif currEventYes in clicked_sprites:
                     playsound(assets.get_audio("goodSound"), False)
                     character.updateStat(currEvent, statsBars)
@@ -115,6 +121,10 @@ while running:
                 aftermath.die()
                 aftermathOk.die()
 
+                # resume timer
+                pygame.time.set_timer(OPPORTUNITYEVENT, t2) 
+                pygame.time.set_timer(AGEEVENT, t1)   
+
 
                 
             # maybe have another class for the events
@@ -123,6 +133,12 @@ while running:
             character.ageUp(sprites)
         
         if event.type == OPPORTUNITYEVENT:
+            # pause time
+            pygame.time.set_timer(OPPORTUNITYEVENT, 0) 
+            pygame.time.set_timer(AGEEVENT, 0)     
+
+
+
             # EventBox(sprites)
             playsound(assets.get_audio("eventSound"), False)
             currEvent = getEvent()

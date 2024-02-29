@@ -7,14 +7,14 @@ class Character(pygame.sprite.Sprite):
     # .. etc
 
     def __init__(self, character, *groups):
-        self.image = assets.get_sprites("tempCHARACTER")
-        self.rect = self.image.get_rect(topleft =(0,0))
+        self.image = assets.get_sprites("infant")
+        self.rect = self.image.get_rect(topleft =(20,70))
 
         # added
-        self.font = pygame.font.SysFont("Arial", 30)
-        self.blue = (0, 0, 128)
-        self.textSurf = self.font.render("Age: " + str(character.age), True, self.blue)
-        self.image.blit(self.textSurf, [20, 200])
+        # self.font = pygame.font.SysFont("Arial", 30)
+        # self.blue = (0, 0, 128)
+        # self.textSurf = self.font.render("Age: " + str(character.age), True, self.blue)
+        # self.image.blit(self.textSurf, [20, 200])
 
         super().__init__(*groups)
 
@@ -29,17 +29,17 @@ class Character(pygame.sprite.Sprite):
     def update(self, character, *groups):
         # age += 1
         # if self.age == 2:
-        
-        print(character.age)
-        if 3%character.age == 0:
+        if 5%(character.age+1) == 0:
             if self.switch < len(self.allAges):
-                # # self.rect = self.image.get_rect(topleft =(0,0))
+                self.image = assets.get_sprites(self.allAges[self.switch])
+                self.rect = self.image.get_rect(topleft =(20,70))
                 self.switch += 1
         
         
-        self.textSurf = self.font.render("Age: " + str(character.age), True, self.blue)
-        self.image = assets.get_sprites(self.allAges[self.switch])
-        self.image.blit(self.textSurf, [20, 200])
+        
+        # self.textSurf = self.font.render("Age: " + str(character.age), True, self.blue)
+        # self.image = assets.get_sprites(self.allAges[self.switch])
+        # self.image.blit(self.textSurf, [20, 200])
         
     
 # class CharacterStats(object):

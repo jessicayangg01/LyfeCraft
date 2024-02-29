@@ -14,23 +14,23 @@ class Text(pygame.sprite.Sprite):
         self.image = pygame.Surface((200, 200))
         self.image.fill(white)
 
-        self.font = pygame.font.SysFont("Arial", 30)
+        self.font = pygame.font.SysFont("Helvetica", 30)
         self.textSurf = self.font.render(type, True, blue, white)
-        self.image.blit(self.textSurf, [0, 2])
+        self.image.blit(self.textSurf, [5, 2])
 
-        self.font = pygame.font.SysFont("Arial", 12)
+        self.font = pygame.font.SysFont("Helvetica", 12)
 
         # add text
-        i = 48
+        i = 45
         x = 40
         while i < len(text):
             currText = text[:i]
             self.textSurf = self.font.render(currText, True, blue, white)
-            self.image.blit(self.textSurf, [0, x])
+            self.image.blit(self.textSurf, [2, x])
             text = text[i:]
             x += 20
         self.textSurf = self.font.render(text, True, blue, white)
-        self.image.blit(self.textSurf, [0, x])
+        self.image.blit(self.textSurf, [2, x])
             
 
         self.rect = self.image.get_rect(topleft =(50,50))
