@@ -2,6 +2,11 @@
 # LyfeCraft
 Welcome to LyfeCraft, an innovative life simulation game where players embark on a thrilling journey through the highs and lows of virtual life. With dynamic decision-making, immersive storytelling, and personalized experiences, LyfeCraft offers an unparalleled gaming experience.
 
+![start screen](githubImages/image.png)
+![main screen](githubImages/image2.png)
+![opportunity screen](githubImages/image3.png)
+
+
 ## Features
 - Personalized Experiences: Customize every aspect of your virtual character, from appearance to life goals.
 - Dynamic Decision-Making: Every choice influences your character's journey and outcomes, leading to a wide range of possibilities and consequences.

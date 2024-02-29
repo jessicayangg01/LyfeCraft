@@ -2,13 +2,13 @@
 class characterStats(object):
     def __init__(self):
         self.age = 0
-        self.happiness = 0
-        self.wealth = 0
-        self.health = 0
-        self.relationship = 0
-        self.education = 0
-        self.career = 0
-        self.adventure = 0
+        self.happiness = 20
+        self.wealth = 20
+        self.health = 20
+        self.relationship = 20
+        self.education = 20
+        self.career = 20
+        self.adventure = 20
    
     
     def ageUp(self, sprites):

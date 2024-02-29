@@ -28,7 +28,6 @@ class CharacterText(pygame.sprite.Sprite):
             self.textSurf = self.font.render(i, True, blue)
             self.image.blit(self.textSurf, [5, index])
             index += 30
-            print(i)
             
 
         self.rect = self.image.get_rect(topleft =(0, 0))
