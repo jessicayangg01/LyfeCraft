@@ -96,7 +96,6 @@ while running:
             pos = pygame.mouse.get_pos()
             # get a list of all sprites that are under the mouse cursor
             clicked_sprites = [s for s in sprites if s.rect.collidepoint(pos)]
-            # print(clicked_sprites)
             # do something with the clicked sprites..
 
             # all the buttons clicked
